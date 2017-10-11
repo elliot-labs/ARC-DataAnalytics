@@ -4,9 +4,13 @@
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="ehuffman@elliot-labs.com" href="https://elliot-labs.com">
+        Elliot Labs
     </author>
+    <icon density="ldpi" height="57" platform="android" src="res/android/icon-36-ldpi.png" width="57" />
+    <icon density="mdpi" height="57" platform="android" src="res/android/icon-48-mdpi.png" width="57" />
+    <icon density="hdpi" height="57" platform="android" src="res/android/icon-72-hdpi.png" width="57" />
+    <icon density="xhdpi" height="57" platform="android" src="res/android/icon-96-xhdpi.png" width="57" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

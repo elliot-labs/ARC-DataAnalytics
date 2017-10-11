@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+{
+    "name": "Run on browser",
+    "type": "cordova",
+    "request": "launch",
+    "platform": "browser",
+    "target": "chrome",
+    "sourceMaps": true,
+    "cwd": "${workspaceRoot}"
+},
+        {
+            "name": "Run Android on browser",
+            "type": "cordova",
+            "request": "launch",
+            "platform": "android",
+            "target": "chrome",
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "name": "Run on android device",
+            "type": "cordova",
+            "request": "launch",
+            "platform": "android",
+            "target": "device",
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/www\\js\\loginui.js"
+        }
+    ]
+}
