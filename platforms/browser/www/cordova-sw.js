@@ -18,13 +18,16 @@ under the License.
 */
 
 // Note, these will be updated automatically at build time
-var CACHE_VERSION = '1508438440460';
+var CACHE_VERSION = '1508439169806';
 var CACHE_LIST = [
     "/config.xml",
     "/cordova-sw.js",
     "/cordova.js",
     "/cordova_plugins.js",
-    "/css/font/MaterialIcons.woff2",
+    "/css/font/MaterialIcons-Regular.eot",
+    "/css/font/MaterialIcons-Regular.ttf",
+    "/css/font/MaterialIcons-Regular.woff",
+    "/css/font/MaterialIcons-Regular.woff2",
     "/css/material-components-web-0.23.0.min.css",
     "/css/material-icons.css",
     "/favicon.ico",
