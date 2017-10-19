@@ -133,7 +133,7 @@
                 <nav class="mdc-temporary-drawer__content mdc-list-group">
                     <div class="mdc-list">
                         <a class="mdc-list-item mdc-temporary-drawer--selected" style="cursor: pointer">
-                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">description</i>Note Maker
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">person</i>Log In
                         </a>
                         <a class="mdc-list-item" onclick="exportCSV()" style="cursor: pointer">
                             <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">file_download</i>Export (as CSV)
@@ -203,6 +203,8 @@
         <!-- Scripts -->
         <script src="js/material-components-web-0.23.0.min.js"></script>
         <script src="js/LogonUI.js"></script>
+        <script src="js/AdminUI.js"></script>
+        <script src="js/DataUI.js"></script>
         <script>
             // Init the fields and MDC system
             mdc.autoInit();
@@ -1161,7 +1163,17 @@
             var messageBoxCancelFunction = null;
 
             function initInterface() {
-                var logonUI = new LogonUI();
+                logonUI = new LogonUI();
+            }
+
+            function loadAdminUI() {
+                logonUI.Remove();
+                adminUI = new AdminUI();
+            }
+
+            function loadDataUI() {
+                logonUI.Remove();
+                dataUI = new DataUI();
             }
 
             // A simple function to open the nav drawer

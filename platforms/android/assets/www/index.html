@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html class="mdc-typography">
+<html class="mdc-typography" lang="en">
     <head>
         <!-- Document properties -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <!-- Title and description -->
-        <title>Modern Design Note Maker</title>
+        <title>ARC Data Analytics</title>
         <meta name="description" content="The Note Maker redesigned for a modern computing environment.">
         <!-- Search keywords -->
         <meta name="keywords" content="HTML, CSS, JavaScript, Material Design, Modern, Note, Maker, Note Maker, Ticket, Ticket Maker">
         <!-- Credits -->
-        <meta name="author" content="Elliot Huffman, Elliot.Huffman@unisys.com">
+        <meta name="author" content="Elliot Huffman, ehuffman@elliot-labs.com">
         <!-- Google Chrome for Android settings -->
-        <meta name="theme-color" content="#5e35b1">
+        <meta name="theme-color" content="#e53935">
         <meta name="mobile-web-app-capable" content="yes">
         <!-- Safari for IOS settings -->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <!-- Load the CSS framework and Icons -->
         <link rel="stylesheet" href="css/material-icons.css">
-        <link rel="stylesheet" href="css/material-components-web.min.css">
+        <link rel="stylesheet" href="css/material-components-web-0.23.0.min.css">
         <!-- Custom CSS styles -->
         <style>
 
             /* Define the default theme colors */
             :root {
-                --mdc-theme-primary: #5e35b1;
-                --mdc-theme-secondary: #64dd17;
+                --mdc-theme-primary: #e53935;
+                --mdc-theme-secondary: #00c853;
             }
 
             /* Set the background properties of the NoteMaker */
@@ -116,8 +116,8 @@
         <div class="mdc-toolbar mdc-toolbar--waterfall mdc-toolbar--fixed">
             <div class="mdc-toolbar__row">
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                    <button class="menu-button material-icons mdc-toolbar__icon--menu" onclick="openNavDrawer()">menu</button>
-                    <span class="mdc-toolbar__title catalog-title" id="toolbarText">Modern Design Note Maker</span>
+                    <button class="menu-button material-icons mdc-toolbar__menu-icon" onclick="openNavDrawer()">menu</button>
+                    <span class="mdc-toolbar__title catalog-title" id="toolbarText">ARC Data Analytics</span>
                 </section>
             </div>
         </div>
@@ -127,18 +127,18 @@
             <nav class="mdc-temporary-drawer__drawer">
                 <header class="mdc-temporary-drawer__header">
                     <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
-                        Created by:<br>Elliot Huffman<br>Elliot.Huffman@Unisys.com<br>Version: Alpha 2
+                        Created by:<br>Elliot Huffman<br>ehuffman@elliot-labs.com<br>Version: Alpha 1
                     </div>
                 </header>
                 <nav class="mdc-temporary-drawer__content mdc-list-group">
                     <div class="mdc-list">
                         <a class="mdc-list-item mdc-temporary-drawer--selected" style="cursor: pointer">
-                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">description</i>Note Maker
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">person</i>Log In
                         </a>
                         <a class="mdc-list-item" onclick="exportCSV()" style="cursor: pointer">
                             <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">file_download</i>Export (as CSV)
                         </a>
-                        <a class="mdc-list-item" target="_blank" href="https://unisyscorp-my.sharepoint.com/personal/elliot_huffman_unisys_com/_layouts/15/guestaccess.aspx?guestaccesstoken=%2b8A4rBKLQy0YDv3gEUdWBiKeALn7Tcb6WggVbAuQuuY%3d&folderid=2_005c5cf9e6c884c948be46f7ca0b43bd3&rev=1">
+                        <a class="mdc-list-item" target="_blank" href="https://elliot-labs.com">
                             <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">apps</i>Other Apps
                         </a>
                     </div>
@@ -154,7 +154,7 @@
         <!-- Message Box -->
         <aside id="MessageBox" class="mdc-dialog" role="alertdialog" aria-labelledby="MessageBox-label"
             aria-describedby="MessageBox-description">
-            <div class="mdc-dialog__surface" id="MessageBox-Surface">
+            <div class="mdc-dialog__surface">
                 <header class="mdc-dialog__header">
                     <h2 id="MessageBox-title" class="mdc-dialog__header__title">
                         Title Here
@@ -181,7 +181,7 @@
             <button class="fab-new mdc-fab app-fab--absolute material-icons" aria-label="New Note Maker" onclick="newNoteMakerInstance()"
                 data-mdc-auto-init="MDCRipple">
                 <span class="mdc-fab__icon">
-                    library_add
+                    check
                 </span>
             </button>
             <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Reset Note Maker" data-mdc-auto-init="MDCRipple" onclick="resetNoteMakerPrompt()">
@@ -198,16 +198,13 @@
 
             <!-- Spacing in between the input and the output sections -->
             <br>
-
-            <!-- Output Cards -->
-            <section id="Troubleshooting-Output">
-                <div class="mdc-card__horizontal-block" id="Output-Card-Row"></div>
-            </section>
-
         </main>
 
         <!-- Scripts -->
-        <script src="js/material-components-web.min.js"></script>
+        <script src="js/material-components-web-0.23.0.min.js"></script>
+        <script src="js/LogonUI.js"></script>
+        <script src="js/AdminUI.js"></script>
+        <script src="js/DataUI.js"></script>
         <script>
             // Init the fields and MDC system
             mdc.autoInit();
@@ -250,154 +247,165 @@
                 }
             })();
 
-            // Create a HTTP put request to send to a server.
+            // Create a HTTP POST request to send to a server.
             function HTTPPost() {
                 this.url = "https://www.example.com";
-                this.content = "post body here";
-                this.ContentType = "application/x-www-form-urlencoded";
-                this.requestInstance = new XMLHttpRequest();
+                this.Content = "post body here";
+                this.ContentType = "application/json";
+                this.RequestInstance = new XMLHttpRequest();
 
+                // Send the request to the server.
                 this.Send = function() {
-                    this.requestInstance.open("POST", this.url, true);
-                    this.requestInstance.setRequestHeader("Content-Type", this.ContentType);
-                    this.requestInstance.send(this.content);
-                    return this.requestInstance.status;
+                    // Create the framework for the request
+                    this.RequestInstance.open("POST", this.url, true);
+                    this.RequestInstance.setRequestHeader("Content-Type", this.ContentType);
+                    // Sends the HTTP request.
+                    this.RequestInstance.send(this.Content);
+                }
+
+                // Returns the current status of the request as an array.
+                // The first part of the request is the current request state of the instantiated class.
+                // The second part of the request is the current response from the server.
+                this.GetStatus = function() {
+                    return [this.RequestInstance.readyState, this.RequestInstance.status];
+                }
+
+                // Returns the response text from the request. It may be a good idea to check if the ready state is in 4 (indicates request has finished).
+                this.GetResponseText = function() {
+                    return this.RequestInstance.responseText;
                 }
             }
 
-            // Create a message box (dialog box) class for reuseable code.
-            function MessageBox() {
-                this.TitleText = "Title Here";
-                this.DescriptionText = "Long Form Description Here...";
-                this.OKButtonText = "OK!";
-                this.CancelButtonText = "Cancel";
-                this.RemoveCancelButton = false;
-                this.RemoveOKButton = false;
-                this.ErrorMode = false;
-                this.LockoutMode = false;
-                this.Duration = 0;
-                this.ListenOK = ["", []];
-                this.ListenCancel = ["", []];
+            // Create a HTTP GET command.
+            function HTTPGet() {
+                this.url = "https://example.com";
+                this.RequestInstance = new XMLHttpRequest();
 
-                // Set the DOM vars for easy access
-                this.MSGBox = document.getElementById("MessageBox");
-                this.MSGBoxSurface = document.getElementById("MessageBox-Surface");
-                this.MSGBoxTitle = document.getElementById("MessageBox-title");
-                this.MSGBoxDescription = document.getElementById("MessageBox-description");
-                this.MSGBoxOKBtn = document.getElementById("MessageBox-OKButton");
-                this.MSGBoxCancelBtn = document.getElementById("MessageBox-CancelButton");
+                // Send the request to the server
+                this.Send = function() {
+                    this.RequestInstance.open("GET", this.url, true);
+                    this.RequestInstance.send();
+                }
 
-                // Shows the message box when called
-                this.Show = function() {
+                // Returns the current status of the request as an array.
+                // The first part of the request is the current request state of the instantiated class.
+                // The second part of the request is the current response from the server.
+                this.GetStatus = function() {
+                    return [this.RequestInstance.readyState, this.RequestInstance.status];
+                }
 
-                    // Remove the current event listener so that the old button function does not conflict with the current button function.
-                    messageBox.unlisten("MDCDialog:accept", messageBoxOKFunction);
-                    messageBox.unlisten("MDCDialog:cancel", messageBoxCancelFunction);
+                // Returns the response text from the request. It may be a good idea to check if the ready state is in 4 (indicates request has finished).
+                this.GetResponseText = function() {
+                    return this.RequestInstance.responseText;
+                }
+            }
 
-                    // define the function using the pre-defined string
-                    var ok = window[this.ListenOK[0]];
-                    var cancel = window[this.ListenCancel[0]];
-                    
-                    // if oKfn is indeed a function, execute it with the specified parameters.
-                    if (typeof ok === "function") {
+            // Send a HTTP DELETE command.
+            function HTTPDelete() {
+                this.url = "https://example.com";
+                // Arguments are in this format: {"arg1": "param1", "arg2": "param2"}
+                this.Arguments = {};
+                this.RequestInstance = new XMLHttpRequest();
 
-                        // Set the parameters as a global setting as after the even listener is created, it can't pull the params from inside another scope.
-                        OKParams = this.ListenOK[1];
+                // Send the request to the server.
+                this.Send = function() {
+                    var processedURL = this.url;
+                    if (this.Arguments.length !== 0) {
+                        processedURL = processedURL + "?";
+                        for (var key in this.Arguments) {
+                            processedURL = processedURL + key + "=" + this.Arguments[key];
+                        }
+                    }
+                    this.RequestInstance.open("DELETE", processedURL, true);
+                    this.RequestInstance.send();
+                }
 
-                        // Store the event listener as global so that conflicts do not occur.
-                        messageBoxOKFunction = function() {
-                            ok.apply(null, OKParams);
+                // Returns the current status of the request as an array.
+                // The first part of the request is the current request state of the instantiated class.
+                // The second part of the request is the current response from the server.
+                this.GetStatus = function() {
+                    return [this.RequestInstance.readyState, this.RequestInstance.status];
+                }
+
+                // Returns the response text from the request. It may be a good idea to check if the ready state is in 4 (indicates request has finished).
+                this.GetResponseText = function() {
+                    return this.RequestInstance.responseText;
+                }
+            }
+
+            // Create a responsive grid class for reuseable code.
+            function Grid() {
+                // Sets the initial settings for the new Grid.
+                this.ParentID = "main";
+                this.ID = "grid";
+                this.ContainerObject = "";
+                this.CenterAlign = true;
+                this.ColumnCount = 4;
+                // Create a array entry for the amount
+                // If set to 0, it will set the default column size (4). all columns should add up to 12.
+                // each item in the array represents a different grid cell.
+                this.ColumnSize = [3, 3, 3, 3];
+
+                // Creates a new grid with the specified values.
+                this.Create = function() {
+                    // Only run if the container does not exit.
+                    if (this.ContainerObject === "") {
+                        // Set the parent element and create the initial HTML in memory for the elements.
+                        var parentElement = document.getElementById(this.ParentID);
+                        var gridOuterContainer = document.createElement("div");
+                        var gridInnerContainer = document.createElement("div");
+
+                        // Set both container's class names.
+                        gridOuterContainer.className = "mdc-layout-grid";
+                        gridInnerContainer.className = "mdc-layout-grid__inner";
+
+                        // If the user specified that the content should be center aligned, center align it.
+                        if (this.CenterAlign) {
+                            gridInnerContainer.style.textAlign = "center";
+                            gridInnerContainer.style.alignContent = "center";
                         }
 
-                        // Apply the function to the OK button's event so that it is executed when clicked.
-                        messageBox.listen('MDCDialog:accept', messageBoxOKFunction);
-                    }                    
+                        // Attach both containers from memory to the actual HTML
+                        parentElement.appendChild(gridOuterContainer);
+                        gridOuterContainer.appendChild(gridInnerContainer);
 
-                    // if cancel is indeed a function, execute it with the specified parameters.
-                    if (typeof cancel === "function") {
+                        // Creates the grid cells based upon the amount specified in the ColumnCount property.
+                        for (var counter = 0; counter < this.ColumnCount; counter++) {
+                            // Create the grid cell HTML in memory.
+                            var gridCell = document.createElement("div");
 
-                        // Set the parameters as a global setting as after the even listener is created, it can't pull the params from inside another scope.
-                        CancelParams = this.ListenCancel[1];
+                            // Set the cell's class name.
+                            gridCell.className = "mdc-layout-grid__cell";
 
-                        // Store the event listener as global so that conflicts do not occur.
-                        messageBoxCancelFunction = function() {
-                            cancel.apply(null, CancelParams);
+                            // set the cell size if defined.
+                            if (this.ColumnSize[counter] !== 0 && this.ColumnSize[counter] !== undefined && this.ColumnSize[counter] !== null) {
+                                gridCell.className += " mdc-layout-grid__cell--span-" + this.ColumnSize[counter];
+                            }
+                            // set the cell's ID based upon the number that it is at currently in the process.
+                            gridCell.id = this.ID + "-" + (counter + 1);
+
+                            // Attach the cell from memory to HTML in the inner container.
+                            gridInnerContainer.appendChild(gridCell);                        
                         }
-                        
-                        // Apply the function to the cancel button's event so that it is executed when clicked.
-                        messageBox.listen('MDCDialog:cancel', messageBoxCancelFunction);
-                    }
 
-                    // Verify if a dialog box is already open, if there is one open, close it.
-                    var iSoPEN = document.getElementsByClassName('mdc-dialog--open mdc-dialog--animating');
-                    if (iSoPEN.length > 0) {
-                        messageBox.close();
-                    }
+                        // Set the container object equal to the outer container.
+                        this.ContainerObject = gridOuterContainer;
 
-                    // Set the text on the to the text specified
-                    this.MSGBoxTitle.innerHTML = this.TitleText;
-                    this.MSGBoxDescription.innerHTML = this.DescriptionText;
-                    this.MSGBoxOKBtn.innerHTML = this.OKButtonText;
-                    this.MSGBoxCancelBtn.innerHTML = this.CancelButtonText;
-
-                    // Style the message box in a red color if the ErrorMode property is true.
-                    // Otherwise, set the visuals to the default settings.
-                    if (this.ErrorMode) {
-                        this.MSGBoxSurface.style.backgroundColor = "red";
-                        this.MSGBoxSurface.style.color = "white";
-                        this.MSGBoxDescription.style.color = "white";
-                        this.MSGBoxOKBtn.style.color = "white";
-                        this.MSGBoxOKBtn.style.backgroundColor = "rgba(0,0,0,.07)";
-                        this.MSGBoxCancelBtn.style.color = "white";
-                        this.MSGBoxCancelBtn.style.backgroundColor = "rgba(0,0,0,.07)";
+                        // Return true for a successful operation.
+                        return true;   
                     } else {
-                        this.MSGBoxSurface.style.backgroundColor = "";
-                        this.MSGBoxSurface.style.color = "";
-                        this.MSGBoxDescription.style.color = "";
-                        this.MSGBoxOKBtn.style.color = "";
-                        this.MSGBoxOKBtn.style.backgroundColor = "";
-                        this.MSGBoxCancelBtn.style.color = "";
-                        this.MSGBoxCancelBtn.style.backgroundColor = "";
-                    }
-
-                    // If the remove button property is enabled for the cancel button, remove it.
-                    // Otherwise keep it visible
-                    if (this.RemoveCancelButton) {
-                        this.MSGBoxCancelBtn.style.display = "none";
-                    } else {
-                        this.MSGBoxCancelBtn.style.display = "";
-                    }
-
-                    // If the remove button property is enabled for the ok button, remove it.
-                    // Otherwise keep it visible
-                    if (this.RemoveOKButton) {
-                        this.MSGBoxOKBtn.style.display = "none";
-                    } else {
-                        this.MSGBoxOKBtn.style.display = "";
-                    }
-
-                    // If the duration is not set at 0 then auto close the dialog box
-                    if (this.Duration !== 0) {
-                        setTimeout(this.Close, this.Duration);
-                    }
-
-                    // Create a non closeable dialog box
-                    if (this.RemoveCancelButton && this.RemoveOKButton && this.LockoutMode) {
-                        this.MSGBox.className += " mdc-dialog--open";
-                        this.MSGBox.style.position = "fixed";
-                    } else {
-                        messageBox.show();
+                        // Return false if the object has already been created.
+                        return false;
                     }
                 }
 
-                // Manually closes the message box safely when called
-                this.Close = function() {
-
-                    // Check if the dialog box is already open, if it is then close the command, otherwise
-                    // log to console that it is already closed.
-                    var iSoPEN = document.getElementsByClassName('mdc-dialog--open');
-                    if (iSoPEN.length > 0) {
-                        messageBox.close();
+                // Deletes the grid and all child cells and cleans up the object variables.
+                this.Remove = function() {
+                    // Only execute if the object has been changed.
+                    if (this.ContainerObject !== "") {
+                        this.ContainerObject.outerHTML = "";
+                        this.ContainerObject = "";
+                        return true;
                     } else {
                         return false;
                     }
@@ -409,14 +417,13 @@
                 // Create the initial objects required for the configuration section manipulation.
                 this.SectionObject = "";
                 this.ButtonCompatible = false;
-                this.HorizontalFlex = false;
-                this.ParentID = "Troubleshooting-Input";
+                this.ParentID = "main";
                 this.SectionID = "";
 
                 // Create the section and attach it to the parent section.
                 this.Create = function() {
                     if (this.SectionObject === "") {
-                            // Create the section element
+                        // Create the section element
                         var sectionObject = document.createElement("section");
                         // grab the parent, element's object to make useable
                         var parentElement = document.getElementById(this.ParentID);
@@ -430,10 +437,6 @@
                         if (this.ButtonCompatible) {
                             sectionObject.style.paddingBottom = "1em";
                         }
-                        if (this.HorizontalFlex) {
-                            sectionObject.style.display = "flex";
-                        }
-
                         // Add the element to another element
                         parentElement.appendChild(sectionObject);
                         // set the section object to be the result of the creation of the section
@@ -759,6 +762,214 @@
                 }
             }
 
+            // Create a Switch class for reuseable code.
+            function Switch() {
+                this.ParentID = "row 1";
+                this.SwitchID = "basic-switch";
+                this.Disabled = false;
+                this.Label = "On/Off switch";
+                this.OnChange = "";
+                this.SwitchObject = "";
+                this.LabelObject = "";
+
+                // Create the switch.
+                this.Create = function() {
+                    // Only run if the switch does nto exist.
+                    if (this.SwitchObject === "" && this.LabelObject === "") {
+                        // Set the parent element and create the initial HTML in memory for the elements.
+                        var parentElement = document.getElementById(this.ParentID);
+                        var switchContainer = document.createElement("div");
+                        var inputControl = document.createElement("input");
+                        var switchBackground = document.createElement("div");
+                        var switchKnob = document.createElement("div");
+                        var switchLabel = document.createElement("label");
+
+                        // Set the container's class name.
+                        switchContainer.className = "mdc-switch";
+
+                        // Set the control properties.
+                        inputControl.type = "checkbox";
+                        inputControl.id = this.SwitchID;
+                        inputControl.className = "mdc-switch__native-control";
+
+                        // Set the background class name.
+                        switchBackground.className = "mdc-switch__background";
+
+                        // Set the knob class name.
+                        switchKnob.className = "mdc-switch__knob";
+
+                        // Set the label properties.
+                        switchLabel.setAttribute("for", this.SwitchID);
+                        switchLabel.className = "mdc-switch-label";
+                        switchLabel.innerText = this.Label;
+
+                        // Disable control if property specifies that it should be disabled.
+                        if (this.Disabled) {
+                            switchContainer.className += " mdc-switch--disabled";
+                            inputControl.disabled = true;
+                        }
+
+                        // Adds an event listener to the input element so that it can execute something if activated.
+                        if (this.OnChange !== "") {
+                            inputControl.setAttribute("onchange", this.OnChange);
+                        }
+
+                        // Append the HTML to the document for rendering.
+                        parentElement.appendChild(switchContainer);
+                        switchContainer.appendChild(inputControl);
+                        switchContainer.appendChild(switchBackground);
+                        switchBackground.appendChild(switchKnob);
+                        parentElement.appendChild(switchLabel);
+
+                        // Set the switch container and the label as public facing properties.
+                        // Return true.
+                        this.SwitchObject = switchContainer;
+                        this.LabelObject = switchLabel;
+                        return true;
+                    } else {
+                        // Return false if the switch already exists.
+                        return false;
+                    }
+                }
+
+                // Return the value of the switch.
+                this.GetValue = function() {
+                    // Only run if the switch is present.
+                    if (this.SwitchObject !== "" && this.LabelObject !== "") {
+                        // Return the current value of the switch.
+                        return document.getElementById(this.SwitchID).checked;
+                    } else {
+                        // If the switch does not exist, return null.
+                        return null;
+                    }
+                }
+
+                // Remove the switch and reset the objects.
+                this.Remove = function() {
+                    // Only run if the switch is present.
+                    if (this.SwitchObject !== "" && this.LabelObject !== "") {
+                        // Delete the HTML from the document.
+                        this.SwitchObject.outerHTML = "";
+                        this.LabelObject.outerHTML = "";
+                        // Reset the objects from the instantiated class.
+                        this.SwitchObject = "";
+                        this.LabelObject = "";
+                        // Return true for successful.
+                        return true;
+                    } else {
+                        // Return false for unsuccessful.
+                        return false;
+                    }
+                }
+            }
+
+            // Create a spinner class for reuseable code.
+            function SpinnerMenu() {
+                this.SpinnerDisabled = false;
+                this.SpinnerTitle = "Example Spinner";
+                this.ParentID = "row 1";
+                this.ComponentID = "DropdownMenu";
+                // Array is in this format: {"Text displayed": ["IdOfItemInSpinner", BoolItemDisabled]}
+                this.SpinnerItems = {"Item 1": ["itemID", true], "Item 2": ["item2", false]};
+                this.SpinnerObject = "";
+                this.MDCSelect = "";
+
+                // Creates a new spinner menu with the specified settings
+                this.Create = function() {
+                    // Only create a new spinner if it has not already been created.
+                    if (this.SpinnerObject === "" && this.MDCSelect === "") {
+                        // Crate the required HTML sections for this spinner.
+                        var parentElement = document.getElementById(this.ParentID);
+                        var spinnerContainer = document.createElement("div");
+                        var spinnerCurrentSelection = document.createElement("span");
+                        var menuContainer = document.createElement("div");
+                        var menuListContainer = document.createElement("ul");
+                        var spinnerTitleMenuItem = document.createElement("li");
+
+                        // Set the spinner container attributes (ID, class name, role and tab index).
+                        spinnerContainer.className = "mdc-select";
+                        if (this.ComponentID !== "") {
+                            spinnerContainer.id = this.ComponentID;
+                        }
+                        spinnerContainer.setAttribute("role", "listbox");
+                        spinnerContainer.tabIndex = "0";
+
+                        // Set the current selection attributes (class name and starting text)
+                        spinnerCurrentSelection.className = "mdc-select__selected-text";
+                        spinnerCurrentSelection.innerText = this.SpinnerTitle;
+                        
+                        // Set the menu container class names.
+                        menuContainer.className = "mdc-simple-menu mdc-select__menu";
+
+                        // Set the list container class names too.
+                        menuListContainer.className = "mdc-list mdc-simple-menu__items";
+
+                        // Set the title menu item's attributes (class name, ID, role, Aria-Disabled and text content).
+                        spinnerTitleMenuItem.className = "mdc-list-item";
+                        spinnerTitleMenuItem.id = "titleItem";
+                        spinnerTitleMenuItem.setAttribute("role", "option");
+                        spinnerTitleMenuItem.setAttribute("aria-disabled", "true");
+                        spinnerTitleMenuItem.innerText = this.SpinnerTitle;
+
+                        // Attach HTML to the parent element for rendering.
+                        parentElement.appendChild(spinnerContainer);
+                        spinnerContainer.appendChild(spinnerCurrentSelection);
+                        spinnerContainer.appendChild(menuContainer);
+                        menuContainer.appendChild(menuListContainer);
+                        menuListContainer.appendChild(spinnerTitleMenuItem);
+
+                        // Add items to the drop down menu.
+                        for (index in this.SpinnerItems) {
+                            // Crate the required HTML section for the menu item.
+                            var menuItem = document.createElement("li");
+
+                            // Set the menu item attributes (ID, class name, role, tab index, text and optionally the enabled status).
+                            menuItem.className = "mdc-list-item";
+                            menuItem.setAttribute("role", "option");
+                            menuItem.tabIndex = "0";
+                            menuItem.id = this.SpinnerItems[index][0];
+                            menuItem.innerText = index;
+                            if (this.SpinnerItems[index][1] == true) {
+                                menuItem.setAttribute("aria-disabled", "true");
+                            }
+                            // Attach HTML to the parent element for rendering
+                            menuListContainer.appendChild(menuItem);
+                        }
+
+                        // Set the properties to equal the object that was instantiated.
+                        this.SpinnerObject = spinnerContainer;
+                        this.MDCSelect = new mdc.select.MDCSelect(document.getElementById(this.ComponentID));
+
+                        // Return the object to the calling function.
+                        return spinnerContainer;
+                    } else {
+                        // Return false if unable to instantiate due to the fact it was already instantiated.
+                        return false;
+                    }
+                }
+
+                // Returns the current value of the spinner menu
+                this.GetSelected = function() {
+                    // Returns the values as follows:
+                    // index 0 = the ID of the item
+                    // Index 1 = the human readable text
+                    return [this.MDCSelect.value, this.MDCSelect.selectedOptions[0].textContent];
+                }
+
+                // Deletes the menu and cleans up the variables for a new creation of the object.
+                this.Remove = function() {
+                    // Only execute if something is there and return true, otherwise return false
+                    if (this.SpinnerObject !== "") {
+                        this.SpinnerObject.outerHTML = "";
+                        this.SpinnerObject = "";
+                        this.MDCSelect = "";
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
             // Create a Menu Item class for reuseable code.
             function MenuItem() {
                 // Set up the various properties that the user will configure after they instantiate the class.
@@ -805,864 +1016,189 @@
                 }
             }
 
+            // Create a message box (dialog box) class for reuseable code.
+            function MessageBox() {
+                this.TitleText = "Title Here";
+                this.DescriptionText = "Long Form Description Here...";
+                this.OKButtonText = "OK!";
+                this.CancelButtonText = "Cancel";
+                this.RemoveCancelButton = false;
+                this.RemoveOKButton = false;
+                this.ErrorMode = false;
+                this.LockoutMode = false;
+                this.Duration = 0;
+                this.ListenOK = ["", []];
+                this.ListenCancel = ["", []];
+
+                // Set the DOM vars for easy access
+                this.MSGBox = document.getElementById("MessageBox");
+                this.MSGBoxSurface = document.getElementById("MessageBox-Surface");
+                this.MSGBoxTitle = document.getElementById("MessageBox-title");
+                this.MSGBoxDescription = document.getElementById("MessageBox-description");
+                this.MSGBoxOKBtn = document.getElementById("MessageBox-OKButton");
+                this.MSGBoxCancelBtn = document.getElementById("MessageBox-CancelButton");
+
+                // Shows the message box when called
+                this.Show = function() {
+
+                    // Remove the current event listener so that the old button function does not conflict with the current button function.
+                    messageBox.unlisten("MDCDialog:accept", messageBoxOKFunction);
+                    messageBox.unlisten("MDCDialog:cancel", messageBoxCancelFunction);
+
+                    // define the function using the pre-defined string
+                    var ok = window[this.ListenOK[0]];
+                    var cancel = window[this.ListenCancel[0]];
+                    
+                    // if oKfn is indeed a function, execute it with the specified parameters.
+                    if (typeof ok === "function") {
+
+                        // Set the parameters as a global setting as after the even listener is created, it can't pull the params from inside another scope.
+                        OKParams = this.ListenOK[1];
+
+                        // Store the event listener as global so that conflicts do not occur.
+                        messageBoxOKFunction = function() {
+                            ok.apply(null, OKParams);
+                        }
+
+                        // Apply the function to the OK button's event so that it is executed when clicked.
+                        messageBox.listen('MDCDialog:accept', messageBoxOKFunction);
+                    }                    
+
+                    // if cancel is indeed a function, execute it with the specified parameters.
+                    if (typeof cancel === "function") {
+
+                        // Set the parameters as a global setting as after the even listener is created, it can't pull the params from inside another scope.
+                        CancelParams = this.ListenCancel[1];
+
+                        // Store the event listener as global so that conflicts do not occur.
+                        messageBoxCancelFunction = function() {
+                            cancel.apply(null, CancelParams);
+                        }
+                        
+                        // Apply the function to the cancel button's event so that it is executed when clicked.
+                        messageBox.listen('MDCDialog:cancel', messageBoxCancelFunction);
+                    }
+
+                    // Verify if a dialog box is already open, if there is one open, close it.
+                    var iSoPEN = document.getElementsByClassName('mdc-dialog--open mdc-dialog--animating');
+                    if (iSoPEN.length > 0) {
+                        messageBox.close();
+                    }
+
+                    // Set the text on the to the text specified
+                    this.MSGBoxTitle.innerHTML = this.TitleText;
+                    this.MSGBoxDescription.innerHTML = this.DescriptionText;
+                    this.MSGBoxOKBtn.innerHTML = this.OKButtonText;
+                    this.MSGBoxCancelBtn.innerHTML = this.CancelButtonText;
+
+                    // Style the message box in a red color if the ErrorMode property is true.
+                    // Otherwise, set the visuals to the default settings.
+                    if (this.ErrorMode) {
+                        this.MSGBoxSurface.style.backgroundColor = "red";
+                        this.MSGBoxSurface.style.color = "white";
+                        this.MSGBoxDescription.style.color = "white";
+                        this.MSGBoxOKBtn.style.color = "white";
+                        this.MSGBoxOKBtn.style.backgroundColor = "rgba(0,0,0,.07)";
+                        this.MSGBoxCancelBtn.style.color = "white";
+                        this.MSGBoxCancelBtn.style.backgroundColor = "rgba(0,0,0,.07)";
+                    } else {
+                        this.MSGBoxSurface.style.backgroundColor = "";
+                        this.MSGBoxSurface.style.color = "";
+                        this.MSGBoxDescription.style.color = "";
+                        this.MSGBoxOKBtn.style.color = "";
+                        this.MSGBoxOKBtn.style.backgroundColor = "";
+                        this.MSGBoxCancelBtn.style.color = "";
+                        this.MSGBoxCancelBtn.style.backgroundColor = "";
+                    }
+
+                    // If the remove button property is enabled for the cancel button, remove it.
+                    // Otherwise keep it visible
+                    if (this.RemoveCancelButton) {
+                        this.MSGBoxCancelBtn.style.display = "none";
+                    } else {
+                        this.MSGBoxCancelBtn.style.display = "";
+                    }
+
+                    // If the remove button property is enabled for the ok button, remove it.
+                    // Otherwise keep it visible
+                    if (this.RemoveOKButton) {
+                        this.MSGBoxOKBtn.style.display = "none";
+                    } else {
+                        this.MSGBoxOKBtn.style.display = "";
+                    }
+
+                    // If the duration is not set at 0 then auto close the dialog box
+                    if (this.Duration !== 0) {
+                        setTimeout(this.Close, this.Duration);
+                    }
+
+                    // Create a non closeable dialog box
+                    if (this.RemoveCancelButton && this.RemoveOKButton && this.LockoutMode) {
+                        this.MSGBox.className += " mdc-dialog--open";
+                        this.MSGBox.style.position = "fixed";
+                    } else {
+                        messageBox.show();
+                    }
+                }
+
+                // Manually closes the message box safely when called
+                this.Close = function() {
+
+                    // Check if the dialog box is already open, if it is then close the command, otherwise
+                    // log to console that it is already closed.
+                    var iSoPEN = document.getElementsByClassName('mdc-dialog--open');
+                    if (iSoPEN.length > 0) {
+                        messageBox.close();
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
             // Global variables that are set for all functions to access.
             var drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector('.mdc-temporary-drawer'));
             var messageBox = new mdc.dialog.MDCDialog(document.querySelector('#MessageBox'));
             var browserPromptReset = true;
             var messageBoxOKFunction = null;
             var messageBoxCancelFunction = null;
-            var selectedUI = null;
 
-            // Initial Interface
             function initInterface() {
-                // if the system has multiple UIs, define the current UI
-                selectedUI = "Init";
-                // Change the title text
-                document.getElementById("toolbarText").innerHTML = "Note Maker - Main Menu";
-
-                // Create a row
-                buttonRow = new Section();
-                buttonRow.ParentID = "main";
-                buttonRow.ButtonCompatible = true;
-                buttonRow.HorizontalFlex = true;
-                buttonRow.SectionID = "Center Row";
-                buttonRow.Create();
-
-                // Create a button
-                button = new Button();
-                button.ParentID = "Center Row";
-                button.Text = "Flowserve";
-                button.ButtonAction = "flowserveUI()";
-                button.Create();
-
-                // Create a button
-                button2 = new Button();
-                button2.ParentID = "Center Row";
-                button2.Text = "Moët Hennessy";
-                button2.ButtonAction = "moëtHennessyUI()";
-                button2.Create();
-
-                // Create a button
-                button3 = new Button();
-                button3.ParentID = "Center Row";
-                button3.Text = "Texas Workforce Commission";
-                button3.ButtonAction = "texasWorkforceUI()";
-                button3.Create();
-
-                // Create a button
-                button4 = new Button();
-                button4.ParentID = "Center Row";
-                button4.Text = "City of Chicago";
-                button4.ButtonAction = "cityOfChicagoUI()";
-                button4.Create();
+                logonUI = new LogonUI();
             }
 
-            // Flowserve
-            function flowserveUI() {
-                // if the system has multiple UIs, define the current UI
-                selectedUI = "Flowserve";
-                // Change the title text
-                document.getElementById("toolbarText").innerHTML = "Note Maker - Flowserve";
-
-                // Remove the previous UI
-                button.Remove();
-                button2.Remove();
-                button3.Remove();
-                button4.Remove();
-                buttonRow.Remove();
-
-                // Create menu item
-                bitlockerKeyMenuItem = new MenuItem();
-                bitlockerKeyMenuItem.MenuItemText = "BitLocker Key";
-                bitlockerKeyMenuItem.Icon = "vpn_key";
-                bitlockerKeyMenuItem.ItemAction = "loadTemplate(0001)";
-                bitlockerKeyMenuItem.Create();
-                
-                // Create menu item
-                accountUnlockMenuItem = new MenuItem();
-                accountUnlockMenuItem.MenuItemText = "Account Unlock";
-                accountUnlockMenuItem.Icon = "lock_open";
-                accountUnlockMenuItem.ItemAction = "loadTemplate(0002)";
-                accountUnlockMenuItem.Create();
-                
-                // Create menu item
-                passwordResetMenuItem = new MenuItem();
-                passwordResetMenuItem.MenuItemText = "Password Reset";
-                passwordResetMenuItem.Icon = "account_circle";
-                passwordResetMenuItem.ItemAction = "loadTemplate(0003)";
-                passwordResetMenuItem.Create();
-
-                // Create row
-                row1 = new Section();
-                row1.SectionID = "Row 1";
-                row1.Create();
-
-                // Create row
-                row2 = new Section();
-                row2.SectionID = "Row 2";
-                row2.Create();
-
-                // Create row
-                row3 = new Section();
-                row3.SectionID = "Row 3";
-                row3.Create();
-
-                // Create row
-                row4 = new Section();
-                row4.SectionID = "Row 4";
-                row4.Create();
-
-                // Create row
-                row5 = new Section();
-                row5.SectionID = "Row 5";
-                row5.Create();
-
-                // Create a text field
-                nameField = new TextField();
-                nameField.Label = "Name";
-                nameField.ID = "Name-Field";
-                nameField.ParentID = "Row 1";
-                nameField.SpellCheck = false;
-                nameField.Required = true;
-                nameField.Create();
-
-                // Create a text field
-                phoneNumberField = new TextField();
-                phoneNumberField.Label = "Phone Number";
-                phoneNumberField.ID = "Phone-Number-Field";
-                phoneNumberField.ParentID = "Row 1";
-                phoneNumberField.SpellCheck = false;
-                phoneNumberField.Required = true;
-                phoneNumberField.Create();
-
-                // Create a text field
-                workHoursField = new TextField();
-                workHoursField.Label = "Work Hours";
-                workHoursField.ID = "Work-Hours-Field";
-                workHoursField.ParentID = "Row 1";
-                workHoursField.SpellCheck = false;
-                workHoursField.Required = true;
-                workHoursField.Create();
-
-                // Create a text field
-                assetTagField = new TextField();
-                assetTagField.Label = "Asset Tag";
-                assetTagField.ID = "Asset-Tag-Field";
-                assetTagField.ParentID = "Row 2";
-                assetTagField.SpellCheck = false;
-                assetTagField.Required = true;
-                assetTagField.Create();
-
-                // Create a text field
-                formFactorField = new TextField();
-                formFactorField.Label = "Desktop/Laptop";
-                formFactorField.ID = "Form-Factor-Field";
-                formFactorField.ParentID = "Row 2";
-                formFactorField.SpellCheck = false;
-                formFactorField.Required = true;
-                formFactorField.Create();
-
-                // Create a text field
-                locationField = new TextField();
-                locationField.Label = "Location";
-                locationField.ID = "Location-Field";
-                locationField.ParentID = "Row 3";
-                locationField.SpellCheck = false;
-                locationField.Required = true;
-                locationField.Create();
-
-                // Create a text field
-                gemsIDField = new TextField();
-                gemsIDField.Label = "GEMS ID";
-                gemsIDField.ID = "GEMS-ID-Field";
-                gemsIDField.ParentID = "Row 3";
-                gemsIDField.SpellCheck = false;
-                gemsIDField.Required = true;
-                gemsIDField.Create();
-
-                // Create a text field
-                problemField = new TextField();
-                problemField.Label = "Problem (Symptom)";
-                problemField.ID = "Problem-Field";
-                problemField.ParentID = "Row 3";
-                problemField.AutoComplete = true;
-                problemField.Required = true;
-                problemField.Create();
-
-                // Create a text field
-                actionsField = new TextField();
-                actionsField.Label = "Actions";
-                actionsField.TextArea = true;
-                actionsField.TextAreaColumns = "50";
-                actionsField.ID = "Actions-Field";
-                actionsField.ParentID = "Row 4";
-                actionsField.AutoComplete = true;
-                actionsField.Required = true;
-                actionsField.Create();
-
-                // Create a text field
-                helpFilesField = new TextField();
-                helpFilesField.Label = "Help File(s) Used";
-                helpFilesField.TextArea = true;
-                helpFilesField.ID = "Help-File-Field";
-                helpFilesField.ParentID = "Row 4";
-                helpFilesField.SpellCheck = false;
-                helpFilesField.Required = true;
-                helpFilesField.Create();
-
-                // Create a text field
-                agentNotesField = new TextField();
-                agentNotesField.Label = "Misc. Notes, Will not be saved!";
-                agentNotesField.TextArea = true;
-                agentNotesField.ID = "Agent-Notes-Field";
-                agentNotesField.ParentID = "Row 4";
-                agentNotesField.Create();
-
-                // Create a text field
-                resolutionField = new TextField();
-                resolutionField.Label = "Resolution";
-                resolutionField.ID = "Resolution-Field";
-                resolutionField.ParentID = "Row 5";
-                resolutionField.Required = true;
-                resolutionField.Create();
-
-                // Create a text card
-                shortDescriptionCard = new TextCard();
-                shortDescriptionCard.ID = "Short-Description-Card";
-                shortDescriptionCard.TitleText = "(Short) Description";
-                shortDescriptionCard.RemoveSubtitleText = true;
-                shortDescriptionCard.BodyText = "This content goes in the \"Short Description\" field in SNOW";
-                shortDescriptionCard.RemoveButton2 = true;
-                shortDescriptionCard.Button1Text = "Copy";
-                shortDescriptionCard.CardAction = "copyByElementID(\"Short-Description-Card\", true)";
-                shortDescriptionCard.Create();
-
-                // Create a text card
-                workNotesCard = new TextCard();
-                workNotesCard.ID = "Work-Notes-Card";
-                workNotesCard.TitleText = "Work Notes";
-                workNotesCard.RemoveSubtitleText = true;
-                workNotesCard.BodyText = "This content goes in the \"Work notes\" field in SNOW";
-                workNotesCard.RemoveButton2 = true;
-                workNotesCard.Button1Text = "Copy";
-                workNotesCard.CardAction = "copyByElementID(\"Work-Notes-Card\", true)";
-                workNotesCard.Create();
-
-                // Create a text card
-                assignmentGroupCard = new TextCard();
-                assignmentGroupCard.ID = "Assignment-Group-Card";
-                assignmentGroupCard.TitleText = "Assignment Group";
-                assignmentGroupCard.RemoveSubtitleText = true;
-                assignmentGroupCard.BodyText = "Service Desk-NA-ROC-FLS";
-                assignmentGroupCard.RemoveButton2 = true;
-                assignmentGroupCard.Button1Text = "Copy";
-                assignmentGroupCard.CardAction = "copyByElementID(\"Assignment-Group-Card\")";
-                assignmentGroupCard.Create();
+            function loadAdminUI() {
+                logonUI.Remove();
+                adminUI = new AdminUI();
+                drawer.open = false;
             }
 
-            // Moët Hennessy
-            function moëtHennessyUI() {
-                // if the system has multiple UIs, define the current UI
-                selectedUI = "Moët Hennessy";
-                // Change the title text
-                document.getElementById("toolbarText").innerHTML = "Note Maker - Moët Hennessy";
-
-                // Remove the previous UI
-                button.Remove();
-                button2.Remove();
-                button3.Remove();
-                button4.Remove();
-                buttonRow.Remove();
-
-                // Create a menu item
-                bitlockerKeyMenuItem = new MenuItem();
-                bitlockerKeyMenuItem.MenuItemText = "BitLocker Key";
-                bitlockerKeyMenuItem.Icon = "vpn_key";
-                bitlockerKeyMenuItem.ItemAction = "loadTemplate(0011)";
-                bitlockerKeyMenuItem.Create();
-
-                // Create a menu item
-                accountUnlockMenuItem = new MenuItem();
-                accountUnlockMenuItem.MenuItemText = "Account Unlock";
-                accountUnlockMenuItem.Icon = "lock_open";
-                accountUnlockMenuItem.ItemAction = "loadTemplate(0012)";
-                accountUnlockMenuItem.Create();
-
-                // Create a menu item
-                passwordResetMenuItem = new MenuItem();
-                passwordResetMenuItem.MenuItemText = "Password Reset";
-                passwordResetMenuItem.Icon = "account_circle";
-                passwordResetMenuItem.ItemAction = "loadTemplate(0013)";
-                passwordResetMenuItem.Create();
-
-                // Create a row
-                row1 = new Section();
-                row1.SectionID = "Row 1";
-                row1.Create();
-
-                // Create a row
-                row2 = new Section();
-                row2.SectionID = "Row 2";
-                row2.Create();
-
-                // Create a row
-                row3 = new Section();
-                row3.SectionID = "Row 3";
-                row3.Create();
-
-                // Create a row
-                row4 = new Section();
-                row4.SectionID = "Row 4";
-                row4.Create();
-
-                // Create a row
-                row5 = new Section();
-                row5.SectionID = "Row 5";
-                row5.Create();
-
-                // Create a field
-                nameField = new TextField();
-                nameField.Label = "Name";
-                nameField.ID = "Name-Field";
-                nameField.ParentID = "Row 1";
-                nameField.SpellCheck = false;
-                nameField.Required = true;
-                nameField.Create();
-
-                // Create a field
-                phoneNumberField = new TextField();
-                phoneNumberField.Label = "Phone Number";
-                phoneNumberField.ID = "Phone-Number-Field";
-                phoneNumberField.ParentID = "Row 1";
-                phoneNumberField.SpellCheck = false;
-                phoneNumberField.Required = true;
-                phoneNumberField.Create();
-
-                // Create a field
-                workHoursField = new TextField();
-                workHoursField.Label = "Work Hours";
-                workHoursField.ID = "Work-Hours-Field";
-                workHoursField.ParentID = "Row 1";
-                workHoursField.SpellCheck = false;
-                workHoursField.Required = true;
-                workHoursField.Create();
-
-                // Create a field
-                formFactorField = new TextField();
-                formFactorField.Label = "Desktop/Laptop";
-                formFactorField.ID = "Form-Factor-Field";
-                formFactorField.ParentID = "Row 2";
-                formFactorField.SpellCheck = false;
-                formFactorField.Required = true;
-                formFactorField.Create();
-
-                // Create a field
-                locationField = new TextField();
-                locationField.Label = "Location";
-                locationField.ID = "Location-Field";
-                locationField.ParentID = "Row 2";
-                locationField.SpellCheck = false;
-                locationField.Required = true;
-                locationField.Create();
-
-                // Create a field
-                problemField = new TextField();
-                problemField.Label = "Problem (Symptom)";
-                problemField.ID = "Problem-Field";
-                problemField.ParentID = "Row 3";
-                problemField.AutoComplete = true;
-                problemField.Required = true;
-                problemField.Create();
-
-                // Create a field
-                actionsField = new TextField();
-                actionsField.Label = "Actions";
-                actionsField.TextArea = true;
-                actionsField.TextAreaColumns = "50";
-                actionsField.ID = "Actions-Field";
-                actionsField.ParentID = "Row 4";
-                actionsField.AutoComplete = true;
-                actionsField.Required = true;
-                actionsField.Create();
-
-                // Create a field
-                helpFilesField = new TextField();
-                helpFilesField.Label = "Help File(s) Used";
-                helpFilesField.TextArea = true;
-                helpFilesField.ID = "Help-File-Field";
-                helpFilesField.ParentID = "Row 4";
-                helpFilesField.SpellCheck = false;
-                helpFilesField.Required = true;
-                helpFilesField.Create();
-
-                // Create a field
-                agentNotesField = new TextField();
-                agentNotesField.Label = "Misc. Notes, Will not be saved!";
-                agentNotesField.TextArea = true;
-                agentNotesField.ID = "Agent-Notes-Field";
-                agentNotesField.ParentID = "Row 4";
-                agentNotesField.Create();
-
-                // Create a field
-                resolutionField = new TextField();
-                resolutionField.Label = "Resolution";
-                resolutionField.ID = "Resolution-Field";
-                resolutionField.ParentID = "Row 5";
-                resolutionField.Required = true;
-                resolutionField.Create();
-
-                // Create a text card
-                shortDescriptionCard = new TextCard();
-                shortDescriptionCard.ID = "Short-Description-Card";
-                shortDescriptionCard.TitleText = "(Short) Description";
-                shortDescriptionCard.RemoveSubtitleText = true;
-                shortDescriptionCard.BodyText = "This content goes in the \"Short Description\" field in SNOW";
-                shortDescriptionCard.RemoveButton2 = true;
-                shortDescriptionCard.Button1Text = "Copy";
-                shortDescriptionCard.CardAction = "copyByElementID(\"Short-Description-Card\", true)";
-                shortDescriptionCard.Create();
-
-                // Create a text card
-                workNotesCard = new TextCard();
-                workNotesCard.ID = "Work-Notes-Card";
-                workNotesCard.TitleText = "Work Notes";
-                workNotesCard.RemoveSubtitleText = true;
-                workNotesCard.BodyText = "This content goes in the \"Work notes\" field in SNOW";
-                workNotesCard.RemoveButton2 = true;
-                workNotesCard.Button1Text = "Copy";
-                workNotesCard.CardAction = "copyByElementID(\"Work-Notes-Card\", true)";
-                workNotesCard.Create();
-
-                // Create a text card
-                assignmentGroupCard = new TextCard();
-                assignmentGroupCard.ID = "Assignment-Group-Card";
-                assignmentGroupCard.TitleText = "Assignment Group";
-                assignmentGroupCard.RemoveSubtitleText = true;
-                assignmentGroupCard.BodyText = "WW-SD-ROC-ENG";
-                assignmentGroupCard.RemoveButton2 = true;
-                assignmentGroupCard.Button1Text = "Copy";
-                assignmentGroupCard.CardAction = "copyByElementID(\"Assignment-Group-Card\")";
-                assignmentGroupCard.Create();
-            }
-
-            // Texas Workforce Commission
-            function texasWorkforceUI() {
-                // if the system has multiple UIs, define the current UI
-                selectedUI = "Texas Workforce Commission";
-                // Change the title text
-                document.getElementById("toolbarText").innerHTML = "Note Maker - Texas Workforce Commission";
-
-                // Remove the previous UI
-                button.Remove();
-                button2.Remove();
-                button3.Remove();
-                button4.Remove();
-                buttonRow.Remove();
-
-                // Create a menu item
-                bitlockerKeyMenuItem = new MenuItem();
-                bitlockerKeyMenuItem.MenuItemText = "BitLocker Key";
-                bitlockerKeyMenuItem.Icon = "vpn_key";
-                bitlockerKeyMenuItem.ItemAction = "loadTemplate(0101)";
-                bitlockerKeyMenuItem.Create();
-
-                // Create a menu item
-                accountUnlockMenuItem = new MenuItem();
-                accountUnlockMenuItem.MenuItemText = "Account Unlock";
-                accountUnlockMenuItem.Icon = "lock_open";
-                accountUnlockMenuItem.ItemAction = "loadTemplate(0102)";
-                accountUnlockMenuItem.Create();
-
-                // Create a menu item
-                passwordResetMenuItem = new MenuItem();
-                passwordResetMenuItem.MenuItemText = "Password Reset";
-                passwordResetMenuItem.Icon = "account_circle";
-                passwordResetMenuItem.ItemAction = "loadTemplate(0103)";
-                passwordResetMenuItem.Create();
-
-                // Create a row
-                row1 = new Section();
-                row1.SectionID = "Row 1";
-                row1.Create();
-
-                // Create a row
-                row2 = new Section();
-                row2.SectionID = "Row 2";
-                row2.Create();
-
-                // Create a row
-                row3 = new Section();
-                row3.SectionID = "Row 3";
-                row3.Create();
-
-                // Create a row
-                row4 = new Section();
-                row4.SectionID = "Row 4";
-                row4.Create();
-
-                // Create a row
-                row5 = new Section();
-                row5.SectionID = "Row 5";
-                row5.Create();
-
-                // Create a text field
-                nameField = new TextField();
-                nameField.Label = "Name";
-                nameField.ID = "Name-Field";
-                nameField.ParentID = "Row 1";
-                nameField.SpellCheck = false;
-                nameField.Required = true;
-                nameField.Create();
-
-                // Create a text field
-                phoneNumberField = new TextField();
-                phoneNumberField.Label = "Phone Number";
-                phoneNumberField.ID = "Phone-Number-Field";
-                phoneNumberField.ParentID = "Row 1";
-                phoneNumberField.SpellCheck = false;
-                phoneNumberField.Required = true;
-                phoneNumberField.Create();
-
-                // Create a text field
-                workHoursField = new TextField();
-                workHoursField.Label = "Work Hours";
-                workHoursField.ID = "Work-Hours-Field";
-                workHoursField.ParentID = "Row 1";
-                workHoursField.SpellCheck = false;
-                workHoursField.Required = true;
-                workHoursField.Create();
-
-                // Create a text field
-                assetTagField = new TextField();
-                assetTagField.Label = "Asset Tag";
-                assetTagField.ID = "Asset-Tag-Field";
-                assetTagField.ParentID = "Row 2";
-                assetTagField.SpellCheck = false;
-                assetTagField.Required = true;
-                assetTagField.Create();
-
-                // Create a text field
-                serialNumberField = new TextField();
-                serialNumberField.Label = "Serial Number";
-                serialNumberField.ID = "Serial-Number-Field";
-                serialNumberField.ParentID = "Row 2";
-                serialNumberField.SpellCheck = false;
-                serialNumberField.Required = true;
-                serialNumberField.Create();
-
-                // Create a text field
-                formFactorField = new TextField();
-                formFactorField.Label = "Desktop/Laptop";
-                formFactorField.ID = "Form-Factor-Field";
-                formFactorField.ParentID = "Row 2";
-                formFactorField.SpellCheck = false;
-                formFactorField.Required = true;
-                formFactorField.Create();
-
-                // Create a text field
-                locationField = new TextField();
-                locationField.Label = "Location";
-                locationField.ID = "Location-Field";
-                locationField.ParentID = "Row 3";
-                locationField.SpellCheck = false;
-                locationField.Required = true;
-                locationField.Create();
-
-                // Create a text field
-                pcRefreshField = new TextField();
-                pcRefreshField.Label = "PC Refresh";
-                pcRefreshField.ID = "PC-Refresh-Field";
-                pcRefreshField.ParentID = "Row 2";
-                pcRefreshField.SpellCheck = false;
-                pcRefreshField.Required = true;
-                pcRefreshField.Create();
-
-                // Create a text field
-                problemField = new TextField();
-                problemField.Label = "Problem (Symptom)";
-                problemField.ID = "Problem-Field";
-                problemField.ParentID = "Row 3";
-                problemField.AutoComplete = true;
-                problemField.Required = true;
-                problemField.Create();
-
-                // Create a text field
-                actionsField = new TextField();
-                actionsField.Label = "Actions";
-                actionsField.TextArea = true;
-                actionsField.TextAreaColumns = "50";
-                actionsField.ID = "Actions-Field";
-                actionsField.ParentID = "Row 4";
-                actionsField.AutoComplete = true;
-                actionsField.Required = true;
-                actionsField.Create();
-
-                // Create a text field
-                helpFilesField = new TextField();
-                helpFilesField.Label = "Help File(s) Used";
-                helpFilesField.TextArea = true;
-                helpFilesField.ID = "Help-File-Field";
-                helpFilesField.ParentID = "Row 4";
-                helpFilesField.SpellCheck = false;
-                helpFilesField.Required = true;
-                helpFilesField.Create();
-
-                // Create a text field
-                agentNotesField = new TextField();
-                agentNotesField.Label = "Misc. Notes, Will not be saved!";
-                agentNotesField.TextArea = true;
-                agentNotesField.ID = "Agent-Notes-Field";
-                agentNotesField.ParentID = "Row 4";
-                agentNotesField.Create();
-
-                // Create a text field
-                resolutionField = new TextField();
-                resolutionField.Label = "Resolution";
-                resolutionField.ID = "Resolution-Field";
-                resolutionField.ParentID = "Row 5";
-                resolutionField.Required = true;
-                resolutionField.Create();
-
-                // Create a text card
-                shortDescriptionCard = new TextCard();
-                shortDescriptionCard.ID = "Short-Description-Card";
-                shortDescriptionCard.TitleText = "(Short) Description";
-                shortDescriptionCard.RemoveSubtitleText = true;
-                shortDescriptionCard.BodyText = "This content goes in the \"Short Description\" field in SNOW";
-                shortDescriptionCard.RemoveButton2 = true;
-                shortDescriptionCard.Button1Text = "Copy";
-                shortDescriptionCard.CardAction = "copyByElementID(\"Short-Description-Card\", true)";
-                shortDescriptionCard.Create();
-
-                // Create a text card
-                workNotesCard = new TextCard();
-                workNotesCard.ID = "Work-Notes-Card";
-                workNotesCard.TitleText = "Work Notes";
-                workNotesCard.RemoveSubtitleText = true;
-                workNotesCard.BodyText = "This content goes in the \"Work notes\" field in SNOW";
-                workNotesCard.RemoveButton2 = true;
-                workNotesCard.Button1Text = "Copy";
-                workNotesCard.CardAction = "copyByElementID(\"Work-Notes-Card\", true)";
-                workNotesCard.Create();
-
-                // Create a text card
-                assignmentGroupCard = new TextCard();
-                assignmentGroupCard.ID = "Assignment-Group-Card";
-                assignmentGroupCard.TitleText = "Assignment Group";
-                assignmentGroupCard.RemoveSubtitleText = true;
-                assignmentGroupCard.BodyText = "TWC-SD";
-                assignmentGroupCard.RemoveButton2 = true;
-                assignmentGroupCard.Button1Text = "Copy";
-                assignmentGroupCard.CardAction = "copyByElementID(\"Assignment-Group-Card\")";
-                assignmentGroupCard.Create();
-            }
-
-            // City of Chicago
-            function cityOfChicagoUI() {
-                // if the system has multiple UIs, define the current UI
-                selectedUI = "City of Chicago";
-                // Change the title text
-                document.getElementById("toolbarText").innerHTML = "Note Maker - City of Chicago";
-
-                // Remove the previous UI
-                button.Remove();
-                button2.Remove();
-                button3.Remove();
-                button4.Remove();
-                buttonRow.Remove();
-
-                // Create a menu item
-                bitlockerKeyMenuItem = new MenuItem();
-                bitlockerKeyMenuItem.MenuItemText = "BitLocker Key";
-                bitlockerKeyMenuItem.Icon = "vpn_key";
-                bitlockerKeyMenuItem.ItemAction = "loadTemplate(1001)";
-                bitlockerKeyMenuItem.Create();
-                
-                // Create a menu item
-                accountUnlockMenuItem = new MenuItem();
-                accountUnlockMenuItem.MenuItemText = "Account Unlock";
-                accountUnlockMenuItem.Icon = "lock_open";
-                accountUnlockMenuItem.ItemAction = "loadTemplate(1002)";
-                accountUnlockMenuItem.Create();
-
-                // Create a menu item
-                passwordResetMenuItem = new MenuItem();
-                passwordResetMenuItem.MenuItemText = "Password Reset";
-                passwordResetMenuItem.Icon = "account_circle";
-                passwordResetMenuItem.ItemAction = "loadTemplate(1003)";
-                passwordResetMenuItem.Create();
-
-                // Create a row
-                row1 = new Section();
-                row1.SectionID = "Row 1";
-                row1.Create();
-
-                // Create a row
-                row2 = new Section();
-                row2.SectionID = "Row 2";
-                row2.Create();
-
-                // Create a row
-                row3 = new Section();
-                row3.SectionID = "Row 3";
-                row3.Create();
-
-                // Create a row
-                row4 = new Section();
-                row4.SectionID = "Row 4";
-                row4.Create();
-
-                // Create a row
-                row5 = new Section();
-                row5.SectionID = "Row 5";
-                row5.Create();
-
-                // Create a text field
-                nameField = new TextField();
-                nameField.Label = "Name";
-                nameField.ID = "Name-Field";
-                nameField.ParentID = "Row 1";
-                nameField.SpellCheck = false;
-                nameField.Required = true;
-                nameField.Create();
-
-                // Create a text field
-                phoneNumberField = new TextField();
-                phoneNumberField.Label = "Phone Number";
-                phoneNumberField.ID = "Phone-Number-Field";
-                phoneNumberField.ParentID = "Row 1";
-                phoneNumberField.SpellCheck = false;
-                phoneNumberField.Required = true;
-                phoneNumberField.Create();
-
-                // Create a text field
-                workHoursField = new TextField();
-                workHoursField.Label = "Work Hours";
-                workHoursField.ID = "Work-Hours-Field";
-                workHoursField.ParentID = "Row 1";
-                workHoursField.SpellCheck = false;
-                workHoursField.Required = true;
-                workHoursField.Create();
-
-                // Create a text field
-                chippsIDField = new TextField();
-                chippsIDField.Label = "Chipps/Employee ID";
-                chippsIDField.ID = "CHIPPS-ID-Field";
-                chippsIDField.ParentID = "Row 2";
-                chippsIDField.SpellCheck = false;
-                chippsIDField.Required = true;
-                chippsIDField.Create();
-
-                // Create a text field
-                departmentField = new TextField();
-                departmentField.Label = "Department";
-                departmentField.ID = "Department-Field";
-                departmentField.ParentID = "Row 2";
-                departmentField.SpellCheck = false;
-                departmentField.Required = true;
-                departmentField.Create();
-
-                // Create a text field
-                formFactorField = new TextField();
-                formFactorField.Label = "Desktop/Laptop";
-                formFactorField.ID = "Form-Factor-Field";
-                formFactorField.ParentID = "Row 2";
-                formFactorField.SpellCheck = false;
-                formFactorField.Required = true;
-                formFactorField.Create();
-
-                // Create a text field
-                locationField = new TextField();
-                locationField.Label = "Location";
-                locationField.ID = "Location-Field";
-                locationField.ParentID = "Row 3";
-                locationField.SpellCheck = false;
-                locationField.Required = true;
-                locationField.Create();
-
-                // Create a text field
-                problemField = new TextField();
-                problemField.Label = "Problem (Symptom)";
-                problemField.ID = "Problem-Field";
-                problemField.ParentID = "Row 3";
-                problemField.AutoComplete = true;
-                problemField.Required = true;
-                problemField.Create();
-
-                // Create a text field
-                actionsField = new TextField();
-                actionsField.Label = "Actions";
-                actionsField.TextArea = true;
-                actionsField.TextAreaColumns = "50";
-                actionsField.ID = "Actions-Field";
-                actionsField.ParentID = "Row 4";
-                actionsField.AutoComplete = true;
-                actionsField.Required = true;
-                actionsField.Create();
-
-                // Create a text field
-                helpFilesField = new TextField();
-                helpFilesField.Label = "Help File(s) Used. This should be attached to the ticket within the system.";
-                helpFilesField.TextArea = true;
-                helpFilesField.ID = "Help-File-Field";
-                helpFilesField.ParentID = "Row 4";
-                helpFilesField.SpellCheck = false;
-                helpFilesField.Required = true;
-                helpFilesField.Create();
-
-                // Create a text field
-                agentNotesField = new TextField();
-                agentNotesField.Label = "Misc. Notes, Will not be saved!";
-                agentNotesField.TextArea = true;
-                agentNotesField.ID = "Agent-Notes-Field";
-                agentNotesField.ParentID = "Row 4";
-                agentNotesField.Create();
-
-                // Create a text field
-                resolutionField = new TextField();
-                resolutionField.Label = "Resolution";
-                resolutionField.ID = "Resolution-Field";
-                resolutionField.ParentID = "Row 5";
-                resolutionField.Required = true;
-                resolutionField.Create();
-
-                // Create a text card
-                shortDescriptionCard = new TextCard();
-                shortDescriptionCard.ID = "Short-Description-Card";
-                shortDescriptionCard.TitleText = "(Short) Description";
-                shortDescriptionCard.RemoveSubtitleText = true;
-                shortDescriptionCard.BodyText = "This content goes in the \"Short Description\" field in SNOW";
-                shortDescriptionCard.RemoveButton2 = true;
-                shortDescriptionCard.Button1Text = "Copy";
-                shortDescriptionCard.CardAction = "copyByElementID(\"Short-Description-Card\", true)";
-                shortDescriptionCard.Create();
-
-                // Create a text card
-                workNotesCard = new TextCard();
-                workNotesCard.ID = "Work-Notes-Card";
-                workNotesCard.TitleText = "Work Notes";
-                workNotesCard.RemoveSubtitleText = true;
-                workNotesCard.BodyText = "This content goes in the \"Work notes\" field in SNOW";
-                workNotesCard.RemoveButton2 = true;
-                workNotesCard.Button1Text = "Copy";
-                workNotesCard.CardAction = "copyByElementID(\"Work-Notes-Card\", true)";
-                workNotesCard.Create();
-
-                // Create a text card
-                assignmentGroupCard = new TextCard();
-                assignmentGroupCard.ID = "Assignment-Group-Card";
-                assignmentGroupCard.TitleText = "Assignment Group";
-                assignmentGroupCard.RemoveSubtitleText = true;
-                assignmentGroupCard.BodyText = "SERVICE DESK-COC";
-                assignmentGroupCard.RemoveButton2 = true;
-                assignmentGroupCard.Button1Text = "Copy";
-                assignmentGroupCard.CardAction = "copyByElementID(\"Assignment-Group-Card\")";
-                assignmentGroupCard.Create();
+            function loadDataUI() {
+                logonUI.Remove();
+                dataUI = new DataUI();
+                drawer.open = false;
             }
 
             // A simple function to open the nav drawer
             function openNavDrawer() {
                 drawer.open = true;
+            }
+
+            function toggleDarkTheme(initialization) {
+                if (initialization) {
+                    // pass
+                } else {
+                    if (darkEnabled) {
+                        // disable dark theme here.
+                    } else {
+                        // enable dark theme here.
+                    }
+                }
+
+                // card background: rgba(0,0,0,.54);
+                // html root class name: mdc-theme--dark;
+                // document background: #303030;
+                // floating label: transparent
+
             }
 
             // Opens a new browser window/tab with the same url,
@@ -1697,66 +1233,7 @@
                     case "Init":
                         //pass
                         break;
-                    
-                    case "Flowserve":
-                        var workNotesFormat = "Name: " + nameField.GetText()
-                                    + "\n<br>Phone Number: " + phoneNumberField.GetText()
-                                    + "\n<br>Work Hours: " + workHoursField.GetText()
-                                    + "\n<br>Asset Tag: " + assetTagField.GetText()
-                                    + "\n<br>Desktop/Laptop: " + formFactorField.GetText()
-                                    + "\n<br>Location: " + locationField.GetText()
-                                    + "\n<br>GEMS ID: " + gemsIDField.GetText()
-                                    + "\n<br>HF Used: " + helpFilesField.GetText()
-                                    + "\n<br>Problem: " + problemField.GetText()
-                                    + "\n<br>Actions: " + actionsField.GetText()
-                                    + "\n<br>Resolution: " + resolutionField.GetText();
-                        shortDescriptionCard.UpdateText(problemField.GetText());
-                        workNotesCard.UpdateText(workNotesFormat);
-                        break;
-                    case "Moët Hennessy":
-                        var workNotesFormat = "Name: " + nameField.GetText()
-                                    + "\n<br>Phone Number: " + phoneNumberField.GetText()
-                                    + "\n<br>Work Hours: " + workHoursField.GetText()
-                                    + "\n<br>Desktop/Laptop: " + formFactorField.GetText()
-                                    + "\n<br>Location: " + locationField.GetText()
-                                    + "\n<br>HF Used: " + helpFilesField.GetText()
-                                    + "\n<br>Problem: " + problemField.GetText()
-                                    + "\n<br>Actions: " + actionsField.GetText()
-                                    + "\n<br>Resolution: " + resolutionField.GetText();
-                        shortDescriptionCard.UpdateText(problemField.GetText());
-                        workNotesCard.UpdateText(workNotesFormat);
-                        break;
-                    case "Texas Workforce Commission":
-                        var workNotesFormat = "Name: " + nameField.GetText()
-                                    + "\n<br>Phone Number: " + phoneNumberField.GetText()
-                                    + "\n<br>Work Hours: " + workHoursField.GetText()
-                                    + "\n<br>Asset Tag: " + assetTagField.GetText()
-                                    + "\n<br>Serial Number: " + serialNumberField.GetText()
-                                    + "\n<br>Desktop/Laptop: " + formFactorField.GetText()
-                                    + "\n<br>Location: " + locationField.GetText()
-                                    + "\n<br>PC Refresh: " + pcRefreshField.GetText()
-                                    + "\n<br>HF Used: " + helpFilesField.GetText()
-                                    + "\n<br>Problem: " + problemField.GetText()
-                                    + "\n<br>Actions: " + actionsField.GetText()
-                                    + "\n<br>Resolution: " + resolutionField.GetText();
-                        shortDescriptionCard.UpdateText(problemField.GetText());
-                        workNotesCard.UpdateText(workNotesFormat);
-                        break;
-                    case "City of Chicago":
-                        var workNotesFormat = "Name: " + nameField.GetText()
-                                    + "\n<br>Phone Number: " + phoneNumberField.GetText()
-                                    + "\n<br>Work Hours: " + workHoursField.GetText()
-                                    + "\n<br>Chipps ID/Employee #: " + chippsIDField.GetText()
-                                    + "\n<br>Desktop/Laptop: " + formFactorField.GetText()
-                                    + "\n<br>Location: " + locationField.GetText()
-                                    + "\n<br>Department: " + departmentField.GetText()
-                                    + "\n<br>HF Used: " + helpFilesField.GetText()
-                                    + "\n<br>Problem: " + problemField.GetText()
-                                    + "\n<br>Actions: " + actionsField.GetText()
-                                    + "\n<br>Resolution: " + resolutionField.GetText();
-                        shortDescriptionCard.UpdateText(problemField.GetText());
-                        workNotesCard.UpdateText(workNotesFormat);
-                        break;
+                
                     default:
                         break;
                 }
@@ -1800,6 +1277,12 @@
                 } else {
                     // Copy the text to the clip board.
                     copyText(copyData);
+
+                    // Build message box that indicates that the data has been copied.
+                    textCopiedDialog.TitleText = "Text Copied!";
+                    textCopiedDialog.DescriptionText = "Your text has been successfully copied to the clipboard :-)";
+                    textCopiedDialog.RemoveCancelButton = true;
+                    textCopiedDialog.Duration = 1000;
                 }
 
                 // Show the dialog
@@ -1831,6 +1314,7 @@
 
             // Exports the on screen fields as a CSV file.
             function exportCSV() {
+                var fieldValues = getCurrentFieldValues();
                 var csvString = fieldValues[0]
                     + "," + fieldValues[1]
                     + "," + fieldValues[2]
@@ -1881,11 +1365,11 @@
             function loadTemplate(TemplateNumber) {
                 switch (TemplateNumber) {
                     // template 1
-                    case 0001:
+                    case 0:
                         // pass
                         break;
                     // template 2
-                    case 0011:
+                    case 1:
                         // pass
                         break;
                     // Blank everything (as a fall back)

@@ -37,9 +37,28 @@ function LogonUI() {
     this.loginButton.ParentID = "buttonGrid-1";
     this.loginButton.Create();
 
+    this.adminMenuItem = new MenuItem();
+    this.adminMenuItem.MenuItemText = "Admin UI";
+    this.adminMenuItem.Icon = "account_balance";
+    this.adminMenuItem.ItemAction = "loadAdminUI()";
+    this.adminMenuItem.Create();
+
+    this.dataEntryMenuItem = new MenuItem();
+    this.dataEntryMenuItem.MenuItemText = "Data Entry UI";
+    this.dataEntryMenuItem.Icon = "description";
+    this.dataEntryMenuItem.ItemAction = "loadDataUI()";
+    this.dataEntryMenuItem.Create();
+
     this.Remove = function() {
         this.uNameField.Remove();
         this.passField.Remove();
-        this.grid.Remove();
+        this.loginButton.Remove();
+        this.adminMenuItem.Remove();
+        this.dataEntryMenuItem.Remove();
+        this.gridForm.Remove();
+        this.gridButton.Remove();
+
+        document.getElementById("toolbarText").innerText = "ARC Data Analytics";
+        
     }
 }

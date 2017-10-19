@@ -18,7 +18,7 @@ under the License.
 */
 
 // Note, these will be updated automatically at build time
-var CACHE_VERSION = '1508443067316';
+var CACHE_VERSION = '1508449663751';
 var CACHE_LIST = [
     "/config.xml",
     "/cordova-sw.js",
@@ -32,6 +32,8 @@ var CACHE_LIST = [
     "/css/material-icons.css",
     "/favicon.ico",
     "/index.html",
+    "/js/AdminUI.js",
+    "/js/DataUI.js",
     "/js/LogonUI.js",
     "/js/material-components-web-0.23.0.min.js",
     "/manifest.json"
