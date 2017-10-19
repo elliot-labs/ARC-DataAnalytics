@@ -6,28 +6,7 @@
   "version": "com.elliot_labs.arcproductioncollection",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "author": "Elliot Labs",
-  "icons": [
-    {
-      "src": "res/android/icon-36-ldpi.png",
-      "type": "image/png",
-      "sizes": "57x57"
-    },
-    {
-      "src": "res/android/icon-48-mdpi.png",
-      "type": "image/png",
-      "sizes": "57x57"
-    },
-    {
-      "src": "res/android/icon-72-hdpi.png",
-      "type": "image/png",
-      "sizes": "57x57"
-    },
-    {
-      "src": "res/android/icon-96-xhdpi.png",
-      "type": "image/png",
-      "sizes": "57x57"
-    }
-  ],
+  "icons": [],
   "start_url": "index.html",
   "theme_color": "#5e35b1"
 }

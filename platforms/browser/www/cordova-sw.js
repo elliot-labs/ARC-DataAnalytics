@@ -18,8 +18,21 @@ under the License.
 */
 
 // Note, these will be updated automatically at build time
-var CACHE_VERSION = '%CACHE_VERSION%';
-var CACHE_LIST = ['CACHE_VALUES'];
+var CACHE_VERSION = '1508438440460';
+var CACHE_LIST = [
+    "/config.xml",
+    "/cordova-sw.js",
+    "/cordova.js",
+    "/cordova_plugins.js",
+    "/css/font/MaterialIcons.woff2",
+    "/css/material-components-web-0.23.0.min.css",
+    "/css/material-icons.css",
+    "/favicon.ico",
+    "/index.html",
+    "/js/loginui.js",
+    "/js/material-components-web-0.23.0.min.js",
+    "/manifest.json"
+];
 
 this.addEventListener('install', function (event) {
     // Perform install steps
