@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="mdc-typography">
+<html class="mdc-typography" lang="en">
     <head>
         <!-- Document properties -->
         <meta charset="UTF-8">
@@ -12,7 +12,7 @@
         <!-- Credits -->
         <meta name="author" content="Elliot Huffman, ehuffman@elliot-labs.com">
         <!-- Google Chrome for Android settings -->
-        <meta name="theme-color" content="#5e35b1">
+        <meta name="theme-color" content="#e53935">
         <meta name="mobile-web-app-capable" content="yes">
         <!-- Safari for IOS settings -->
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,8 +25,8 @@
 
             /* Define the default theme colors */
             :root {
-                --mdc-theme-primary: #5e35b1;
-                --mdc-theme-secondary: #64dd17;
+                --mdc-theme-primary: #e53935;
+                --mdc-theme-secondary: #00c853;
             }
 
             /* Set the background properties of the NoteMaker */
@@ -110,7 +110,7 @@
         </style>
     </head>
 
-    <body class="mdc-typography notemaker-body">
+    <body class="mdc-typography notemaker-body" onload="initInterface()">
 
         <!-- Toolbar -->
         <div class="mdc-toolbar mdc-toolbar--waterfall mdc-toolbar--fixed">
@@ -202,6 +202,7 @@
 
         <!-- Scripts -->
         <script src="js/material-components-web-0.23.0.min.js"></script>
+        <script src="js/LogonUI.js"></script>
         <script>
             // Init the fields and MDC system
             mdc.autoInit();
@@ -333,7 +334,7 @@
             // Create a responsive grid class for reuseable code.
             function Grid() {
                 // Sets the initial settings for the new Grid.
-                this.ParentID = "";
+                this.ParentID = "main";
                 this.ID = "grid";
                 this.ContainerObject = "";
                 this.CenterAlign = true;
@@ -1158,6 +1159,10 @@
             var browserPromptReset = true;
             var messageBoxOKFunction = null;
             var messageBoxCancelFunction = null;
+
+            function initInterface() {
+                var logonUI = new LogonUI();
+            }
 
             // A simple function to open the nav drawer
             function openNavDrawer() {
