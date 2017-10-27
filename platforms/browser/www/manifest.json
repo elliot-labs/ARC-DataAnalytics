@@ -3,7 +3,7 @@
   "display": "standalone",
   "name": "ProdCollect",
   "short_name": "ProdCollect",
-  "version": "com.elliot_labs.arcproductioncollection",
+  "version": "com.elliotlabs.arcproductioncollection",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "author": "Elliot Labs",
   "icons": [],
