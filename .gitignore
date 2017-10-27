@@ -1,13 +1,33 @@
 # Mac
 .DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+.apdisk
 
-# iOS
+# Windows
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# iOS Platform
 platforms/ios/build/
 platforms/ios/www/
 platforms/ios/cordova/console.log
 *.xcuserdatad
 
-# Android
+# Android Platform
 platforms/android/.gradle
 platforms/android/build
 platforms/android/assets/www
