@@ -1169,11 +1169,13 @@
             function loadAdminUI() {
                 logonUI.Remove();
                 adminUI = new AdminUI();
+                drawer.open = false;
             }
 
             function loadDataUI() {
                 logonUI.Remove();
                 dataUI = new DataUI();
+                drawer.open = false;
             }
 
             // A simple function to open the nav drawer
